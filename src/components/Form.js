@@ -2,6 +2,11 @@ import React from 'react';
 
 class Form extends React.Component {
   render() {
+    const {
+      cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
+      onInputChange, onSaveButtonClick 
+    } = this.props;
     return (
       <div className="form-container">
         <label htmlFor="name">
@@ -9,6 +14,7 @@ class Form extends React.Component {
           <input
             type="text"
             data-testid="name-input"
+            value={ cardDescription }
           />
         </label>
         <label htmlFor="description">
