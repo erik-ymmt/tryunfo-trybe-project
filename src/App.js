@@ -16,22 +16,23 @@ class App extends React.Component {
       cardAttr3: '',
       cardImage: '',
       cardRare: '',
-      // cardTrunfo: '',
+      cardTrunfo: false,
     };
   }
 
   handleInput({ target }) {
-    const { name, value } = target;
+    const { name, value, type, checked } = target;
+    const finalValue = type === 'checkbox' ? checked : value;
     this.setState({
-      [name]: value,
+      [name]: finalValue,
     });
   }
 
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, hasTrunfo,
-      // cardTrunfo, isSaveButtonDisabled,
+      cardImage, cardRare, hasTrunfo, cardTrunfo,
+      // isSaveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -44,21 +45,21 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardImage={ cardImage }
           cardRare={ cardRare }
-          cardTrunfo
+          cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled
           onInputChange={ this.handleInput }
           onSaveButtonClick
         />
         <Card
-          cardName
-          cardDescription
-          cardAttr1
-          cardAttr2
-          cardAttr3
-          cardImage
-          cardRare
-          cardTrunfo
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
         />
       </div>
     );
