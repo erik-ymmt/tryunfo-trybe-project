@@ -17,6 +17,8 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
+      // deck: [],
     };
   }
 
@@ -25,14 +27,27 @@ class App extends React.Component {
     const finalValue = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: finalValue,
-    });
+    }, this.enableSaveBtn);
+  }
+
+  enableSaveBtn() {
+    const { cardName, cardDescription,
+      cardImage, cardRare } = this.state;
+    if (
+      cardName.length > 0
+      && cardDescription.length > 0
+      && cardImage.length > 0
+      && cardRare.length > 0
+    ) {
+      this.setState({ isSaveButtonDisabled: false });
+    }
   }
 
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, hasTrunfo, cardTrunfo,
-      // isSaveButtonDisabled,
+      isSaveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -47,7 +62,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled
+          isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleInput }
           onSaveButtonClick
         />
