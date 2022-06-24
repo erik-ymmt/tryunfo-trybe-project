@@ -13,6 +13,7 @@ class Card extends React.Component {
       cardRare,
       cardTrunfo,
     } = this.props;
+
     return (
       <div>
         <h2 data-testid="name-card">{ cardName }</h2>
@@ -22,8 +23,10 @@ class Card extends React.Component {
         <div data-testid="attr2-card">{ cardAttr2 }</div>
         <div data-testid="attr3-card">{ cardAttr3 }</div>
         <div data-testid="rare-card">{ cardRare }</div>
-        <div data-testid="trunfo-card">
-          { () => { if (cardTrunfo) return cardTrunfo; } }
+        <div>
+          { cardTrunfo
+            ? <div data-testid="trunfo-card"> Super Trunfo </div>
+            : <div />}
         </div>
       </div>
 
