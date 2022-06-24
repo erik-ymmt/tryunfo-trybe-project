@@ -8,40 +8,46 @@ class App extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
 
-    // this.state = {
-    //   cardName: '',
-    //   cardDescription: '',
-    //   cardAttr1: '',
-    //   cardAttr2: '',
-    //   cardAttr3: '',
-    //   cardImage: '',
-    //   cardRare: '',
-    //   cardTrunfo: '',
-    // };
+    this.state = {
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: '',
+      // cardTrunfo: '',
+    };
   }
 
-  handleInput() {
-    this.setState(
-
-    );
+  handleInput({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   render() {
+    const {
+      cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, hasTrunfo,
+      // cardTrunfo, isSaveButtonDisabled,
+    } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          cardName={ this.handleInput }
-          cardDescription
-          cardAttr1
-          cardAttr2
-          cardAttr3
-          cardImage
-          cardRare
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
           cardTrunfo
-          hasTrunfo
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled
-          onInputChange
+          onInputChange={ this.handleInput }
           onSaveButtonClick
         />
         <Card
