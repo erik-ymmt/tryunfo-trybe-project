@@ -9,6 +9,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.saveCard = this.saveCard.bind(this);
     this.renderDeck = this.renderDeck.bind(this);
+    this.filterByName = this.filterByName.bind(this);
 
     this.state = {
       cardName: '',
@@ -22,6 +23,7 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       deck: [],
+      nameFilter: '',
     };
   }
 
@@ -133,29 +135,35 @@ class App extends React.Component {
     this.setState(deck.splice(index, 1), this.verifyTrunfoExistence);
   }
 
+  filterByName() {
+    return 1;
+  }
+
   renderDeck() {
-    const { deck } = this.state;
-    return deck.map((card, index) => (
-      <div className="deck-card" key={ card.cardName }>
-        <Card
-          cardName={ card.cardName }
-          cardDescription={ card.cardDescription }
-          cardAttr1={ card.cardAttr1 }
-          cardAttr2={ card.cardAttr2 }
-          cardAttr3={ card.cardAttr3 }
-          cardImage={ card.cardImage }
-          cardRare={ card.cardRare }
-          cardTrunfo={ card.cardTrunfo }
-        />
-        <button
-          type="button"
-          data-testid="delete-button"
-          onClick={ () => this.removeCard(index) }
-        >
-          Remover
-        </button>
-      </div>
-    ));
+    const { deck, nameFilter } = this.state;
+    return deck
+      .filter((card) => card.cardName.includes(nameFilter))
+      .map((card, index) => (
+        <div className="deck-card" key={ card.cardName }>
+          <Card
+            cardName={ card.cardName }
+            cardDescription={ card.cardDescription }
+            cardAttr1={ card.cardAttr1 }
+            cardAttr2={ card.cardAttr2 }
+            cardAttr3={ card.cardAttr3 }
+            cardImage={ card.cardImage }
+            cardRare={ card.cardRare }
+            cardTrunfo={ card.cardTrunfo }
+          />
+          <button
+            type="button"
+            data-testid="delete-button"
+            onClick={ () => this.removeCard(index) }
+          >
+            Remover
+          </button>
+        </div>
+      ));
   }
 
   render() {
@@ -201,6 +209,15 @@ class App extends React.Component {
         </section>
         <section className="deck-container">
           <h2>Deck</h2>
+          <label htmlFor="search-filter">
+            Fitlro de Busca
+            <input
+              name="nameFilter"
+              type="text"
+              data-testid="name-filter"
+              onChange={ this.handleInput }
+            />
+          </label>
           {this.renderDeck()}
         </section>
       </div>
