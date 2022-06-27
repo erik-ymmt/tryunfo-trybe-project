@@ -8,6 +8,7 @@ class App extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.saveCard = this.saveCard.bind(this);
+    this.renderDeck = this.renderDeck.bind(this);
 
     this.state = {
       cardName: '',
@@ -115,6 +116,24 @@ class App extends React.Component {
         });
       }
     });
+    this.enableSaveBtn();
+  }
+
+  renderDeck() {
+    const { deck } = this.state;
+    return deck.map((card) => (
+      <Card
+        cardName={ card.cardName }
+        cardDescription={ card.cardDescription }
+        cardAttr1={ card.cardAttr1 }
+        cardAttr2={ card.cardAttr2 }
+        cardAttr3={ card.cardAttr3 }
+        cardImage={ card.cardImage }
+        cardRare={ card.cardRare }
+        cardTrunfo={ card.cardTrunfo }
+        key={ card.cardName }
+      />
+    ));
   }
 
   render() {
@@ -126,30 +145,42 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.handleInput }
-          onSaveButtonClick={ this.saveCard }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+        <section className="new-card-container">
+          <h2>Criar Carta</h2>
+          <div className="new-card-inputs">
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              onInputChange={ this.handleInput }
+              onSaveButtonClick={ this.saveCard }
+            />
+          </div>
+          <h2>Preview Carta</h2>
+          <div className="new-card-preview">
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          </div>
+        </section>
+        <section className="deck-container">
+          <h2>Deck</h2>
+          {this.renderDeck()}
+        </section>
       </div>
     );
   }
