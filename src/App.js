@@ -109,30 +109,52 @@ class App extends React.Component {
 
   verifyTrunfoExistence() {
     const { deck } = this.state;
+    if (deck.length === 0) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
     deck.forEach((card) => {
       if (card.cardTrunfo === true) {
         this.setState({
           hasTrunfo: true,
+        });
+      } else {
+        this.setState({
+          hasTrunfo: false,
         });
       }
     });
     this.enableSaveBtn();
   }
 
+  removeCard(index) {
+    const { deck } = this.state;
+    this.setState(deck.splice(index, 1), this.verifyTrunfoExistence);
+  }
+
   renderDeck() {
     const { deck } = this.state;
-    return deck.map((card) => (
-      <Card
-        cardName={ card.cardName }
-        cardDescription={ card.cardDescription }
-        cardAttr1={ card.cardAttr1 }
-        cardAttr2={ card.cardAttr2 }
-        cardAttr3={ card.cardAttr3 }
-        cardImage={ card.cardImage }
-        cardRare={ card.cardRare }
-        cardTrunfo={ card.cardTrunfo }
-        key={ card.cardName }
-      />
+    return deck.map((card, index) => (
+      <div className="deck-card" key={ card.cardName }>
+        <Card
+          cardName={ card.cardName }
+          cardDescription={ card.cardDescription }
+          cardAttr1={ card.cardAttr1 }
+          cardAttr2={ card.cardAttr2 }
+          cardAttr3={ card.cardAttr3 }
+          cardImage={ card.cardImage }
+          cardRare={ card.cardRare }
+          cardTrunfo={ card.cardTrunfo }
+        />
+        <button
+          type="button"
+          data-testid="delete-button"
+          onClick={ () => this.removeCard(index) }
+        >
+          Remover
+        </button>
+      </div>
     ));
   }
 
