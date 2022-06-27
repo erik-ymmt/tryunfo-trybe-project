@@ -30,7 +30,7 @@ class App extends React.Component {
     }, this.enableSaveBtn);
   }
 
-  enableSaveBtn() {
+  validatesTextInput() {
     const { cardName, cardDescription,
       cardImage, cardRare } = this.state;
     if (
@@ -39,7 +39,30 @@ class App extends React.Component {
       && cardImage.length > 0
       && cardRare.length > 0
     ) {
+      return true;
+    }
+  }
+
+  validatesAttrInput() {
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const maxAttribute = 90;
+    const maxAttributeSum = 210;
+    const attrSum = parseInt(cardAttr1, 10)
+      + parseInt(cardAttr2, 10)
+      + parseInt(cardAttr3, 10);
+    if (cardAttr1 <= maxAttribute && cardAttr1 >= 0
+      && cardAttr2 <= maxAttribute && cardAttr2 >= 0
+      && cardAttr3 <= maxAttribute && cardAttr3 >= 0
+      && attrSum <= maxAttributeSum) {
+      return true;
+    }
+  }
+
+  enableSaveBtn() {
+    if (this.validatesTextInput() && this.validatesAttrInput()) {
       this.setState({ isSaveButtonDisabled: false });
+    } else {
+      this.setState({ isSaveButtonDisabled: true });
     }
   }
 
