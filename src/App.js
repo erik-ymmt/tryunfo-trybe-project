@@ -87,14 +87,22 @@ class App extends React.Component {
   }
 
   resetInputs() {
-    return 1;
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: '',
+    });
   }
 
   saveCard() {
     const { deck } = this.state;
     this.setState({
       deck: [...deck, this.createNewCard()],
-    });
+    }, this.resetInputs);
   }
 
   render() {
