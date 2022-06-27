@@ -7,6 +7,7 @@ class App extends React.Component {
     super();
 
     this.handleInput = this.handleInput.bind(this);
+    this.saveCard = this.saveCard.bind(this);
 
     this.state = {
       cardName: '',
@@ -18,7 +19,7 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
-      // deck: [],
+      deck: [],
     };
   }
 
@@ -66,6 +67,36 @@ class App extends React.Component {
     }
   }
 
+  createNewCard() {
+    const {
+      cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo,
+      isSaveButtonDisabled,
+    } = this.state;
+    return {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+    };
+  }
+
+  resetInputs() {
+    return 1;
+  }
+
+  saveCard() {
+    const { deck } = this.state;
+    this.setState({
+      deck: [...deck, this.createNewCard()],
+    });
+  }
+
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
@@ -87,7 +118,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleInput }
-          onSaveButtonClick
+          onSaveButtonClick={ this.saveCard }
         />
         <Card
           cardName={ cardName }
