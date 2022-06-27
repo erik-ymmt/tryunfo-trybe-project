@@ -18,6 +18,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
       deck: [],
     };
@@ -95,7 +96,7 @@ class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: '',
-    });
+    }, this.verifyTrunfoExistence);
   }
 
   saveCard() {
@@ -103,6 +104,17 @@ class App extends React.Component {
     this.setState({
       deck: [...deck, this.createNewCard()],
     }, this.resetInputs);
+  }
+
+  verifyTrunfoExistence() {
+    const { deck } = this.state;
+    deck.forEach((card) => {
+      if (card.cardTrunfo === true) {
+        this.setState({
+          hasTrunfo: true,
+        });
+      }
+    });
   }
 
   render() {
