@@ -9,7 +9,6 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.saveCard = this.saveCard.bind(this);
     this.renderDeck = this.renderDeck.bind(this);
-    this.filterByName = this.filterByName.bind(this);
 
     this.state = {
       cardName: '',
@@ -24,6 +23,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       deck: [],
       nameFilter: '',
+      rareFilter: '',
     };
   }
 
@@ -135,13 +135,15 @@ class App extends React.Component {
     this.setState(deck.splice(index, 1), this.verifyTrunfoExistence);
   }
 
-  filterByName() {
-    return 1;
+  filterByRarity(rareFilter, card) {
+    if (rareFilter === '' || rareFilter === 'todas') return true;
+    return card.cardRare === rareFilter;
   }
 
   renderDeck() {
-    const { deck, nameFilter } = this.state;
+    const { deck, nameFilter, rareFilter } = this.state;
     return deck
+      .filter((card) => this.filterByRarity(rareFilter, card))
       .filter((card) => card.cardName.includes(nameFilter))
       .map((card, index) => (
         <div className="deck-card" key={ card.cardName }>
@@ -209,14 +211,29 @@ class App extends React.Component {
         </section>
         <section className="deck-container">
           <h2>Deck</h2>
-          <label htmlFor="search-filter">
+          <label htmlFor="search-name-filter">
             Fitlro de Busca
             <input
               name="nameFilter"
               type="text"
               data-testid="name-filter"
               onChange={ this.handleInput }
+              placeholder="Nome da carta"
             />
+          </label>
+          <label htmlFor="rarity">
+            <select
+              name="rareFilter"
+              data-testid="rare-filter"
+              // id="rarity"
+              // value={ cardRare }
+              onChange={ this.handleInput }
+            >
+              <option value="todas"> todas </option>
+              <option value="normal"> normal </option>
+              <option value="raro"> raro </option>
+              <option value="muito raro"> muito raro </option>
+            </select>
           </label>
           {this.renderDeck()}
         </section>
