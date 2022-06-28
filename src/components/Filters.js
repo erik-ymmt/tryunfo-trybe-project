@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Filters extends React.Component {
   render() {
-    const { onInputChange, trunfoFilter, disableFilters } = this.props;
+    const { onInputChange, trunfoFilter } = this.props;
     return (
       <>
         <label htmlFor="search-name-filter">
