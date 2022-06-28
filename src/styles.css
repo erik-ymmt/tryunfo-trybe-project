@@ -11,11 +11,11 @@
 
   /* colors */
 
-  --green-dark: #036b52;
+  --green-dark: rgb(51, 69, 54);
 
   --green-light: #d1e7dd;
 
-  --blue: #006dfb;
+  --blue: #006dfb79;
 
   --purple: #41197f;
 
@@ -25,7 +25,9 @@
 
   --red-light: #f8d7da;
 
-  --red-dark: #dc3545;
+  --red-dark: #dc354677;
+
+  --yellow-dark: #c9bc1277;
 
   /* 60 30 10 */
 
@@ -35,7 +37,7 @@
 
   --accent: #2fc18c;
 
-  --grey-50: #f8fafc;
+  --grey-50: #f8fafc9d;
 
   --grey-200: #e2e8f0;
 
@@ -45,7 +47,7 @@
 
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1) , 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
-  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.2) , 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+  --shadow-3: 4px 6px rgba(0, 0, 0, 0.5);
 
   /* config blablabla */
 
@@ -59,9 +61,9 @@
 
   --letterSpacing: 1px;
 
-  --headingFont: 'Roboto' , sans-serif;
+  --headingFont: 'Kanit' , sans-serif;
 
-  --bodyFont: 'Nunito' , sans-serif;
+  --bodyFont: 'Kanit' , sans-serif;
 }
 
 ::selection {
@@ -72,6 +74,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Montserrat&display=swap') ;
 
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;400;600;800&display=swap') ;
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,500;1,400&display=swap') ;
+
 html {
   font-size: 100%;
 } /* 16px */
@@ -79,36 +85,51 @@ html {
 body {
   color: black;
   font-family: var(--bodyFont);
+  font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.75;
-  margin: 25px 50px;
 }
 
 p {
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 h1, h2, h3, h4, h5 {
+  color: var(--green-dark);
   font-family: var(--headingFont);
   font-weight: 400;
   letter-spacing: var(--letterSpacing);
   line-height: 1.3;
   margin: 0;
-  margin-bottom: 1.38rem;
+  text-align: center;
   text-transform: capitalize;
 }
 
 h1 {
+  background-color: rgb(51, 69, 54);
+  color: white;
+  font-family: Stick No Bills , sans-serif;
   font-size: 3.052rem;
+  font-weight: 800;
   margin-top: 0;
+  padding: 1%;
 }
 
 h2 {
+  background-color: var(--grey-50);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-3);
   font-size: 2.441rem;
+  font-weight: 500;
+  margin: 2%;
+  margin-bottom: 10px;
+  width: 90%;
 }
 
 h3 {
   font-size: 1.953rem;
+  margin: 5px 0;
 }
 
 h4 {
@@ -132,7 +153,7 @@ small, .text_small {
 
 /* buttons */
 button {
-  background: var(--accent);
+  background: var(--green-dark);
   border: transparent;
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-1);
@@ -141,7 +162,7 @@ button {
   display: inline-block;
   font-size: 1.2rem;
   letter-spacing: var(--letterSpacing);
-  margin-right: 1rem;
+  margin: 1rem;
   padding: 0.375rem 0.75rem;
 
   /* transition: var(--transition); */
@@ -176,7 +197,7 @@ input, textarea, select {
   border-radius: var(--borderRadius);
   margin-bottom: 1rem;
   padding: 0.7rem 0.75rem;
-  width: 100%;
+  width: 95%;
 }
 
 .container {
@@ -200,4 +221,153 @@ input, textarea, select {
 .success {
   background: var(--green-light);
   color: var(--green-dark);
+}
+
+.new-card-container {
+  background-image: url('https://images.alphacoders.com/510/thumb-1920-510026.jpg');
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.new-card-inputs, .new-card-preview {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 40%;
+}
+
+.form-container {
+  background: var(--grey-50);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-3);
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+label {
+  margin-left: 1.2rem;
+}
+
+.trunfo-container {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.trunfo-checkbox {
+  margin-bottom: 0;
+  width: 5%;
+}
+
+.card {
+  align-items: center;
+  background-color: var(--grey-50);
+  border: 1px solid var(--green-dark);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-3);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  padding: 15px 0;
+  width: 350px;
+}
+
+.img-container {
+  background-color: var(--grey-50);
+  border: 2px solid var(--green-dark);
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.card img {
+  margin: 15px 0;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.card div {
+  font-size: 1.2rem;
+}
+
+.attr1-card, .attr2-card, .attr3-card {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin: 2px;
+}
+
+.attr1, .attr2, .attr3 {
+  align-items: center;
+  border-radius: 100%;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 500;
+  height: 2.5rem;
+  justify-content: center;
+  text-align: center;
+  width: 2.5rem;
+}
+
+.attr1 {
+  background-color: var(--blue);
+}
+
+.attr2 {
+  background-color: var(--yellow-dark);
+}
+
+.attr3 {
+  background-color: var(--red-dark);
+}
+
+.card-footer {
+  border: 1px solid var(--green-dark);
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  text-align: center;
+  width: 80%;
+}
+
+.deck-container {
+  align-items: center;
+  background-color: var(--green-dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  padding: 2%;
+  padding-top: 0;
+
+  /* background-image: url('https://img.freepik.com/free-photo/green-grass-field-pattern-background-soccer-football_64749-1953.jpg?w=1060'); */
+}
+
+.deck-filters-container {
+  align-items: flex-end;
+  display: flex;
+}
+
+.deck-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.deck-card button {
+  background-color: var(--red-dark);
+  margin: 0;
+  width: 80%;
+}
+
+.deck-card-container {
+  display: flex;
+  flex-wrap: wrap;
 }

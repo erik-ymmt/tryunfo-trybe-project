@@ -30,43 +30,47 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr1">
-          Atributo1
+          Defesa
           <input
             name="cardAttr1"
             type="number"
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            placeholder="0 ~ 90"
           />
         </label>
         <label htmlFor="attr2">
-          Atributo2
+          Meio-Campo
           <input
             name="cardAttr2"
             type="number"
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            placeholder="0 ~ 90"
           />
         </label>
         <label htmlFor="attr3">
-          Atributo3
+          Ataque
           <input
             name="cardAttr3"
             type="number"
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            placeholder="0 ~ 90"
           />
         </label>
         <label htmlFor="img">
-          URL da Imagem
+          Imagem
           <input
             name="cardImage"
             type="text"
             data-testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
+            placeholder="URL da Imagem"
           />
         </label>
         <label htmlFor="rarity">
@@ -86,15 +90,16 @@ class Form extends React.Component {
         <div>
           { !hasTrunfo
             ? (
-              <label htmlFor="super-trunfo">
-                Super Trunfo
+              <label htmlFor="super-trunfo" className="trunfo-container">
                 <input
                   name="cardTrunfo"
                   type="checkbox"
                   data-testid="trunfo-input"
                   checked={ cardTrunfo }
                   onChange={ onInputChange }
+                  className="trunfo-checkbox"
                 />
+                Super Trunfo
               </label>
             )
             : <p>Você já tem um Super Trunfo em seu baralho</p> }

@@ -15,18 +15,33 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <div>
-        <h2 data-testid="name-card">{ cardName }</h2>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <div data-testid="attr1-card">{ cardAttr1 }</div>
-        <div data-testid="attr2-card">{ cardAttr2 }</div>
-        <div data-testid="attr3-card">{ cardAttr3 }</div>
-        <div data-testid="rare-card">{ cardRare }</div>
-        <div>
-          { cardTrunfo
-            ? <div data-testid="trunfo-card"> Super Trunfo </div>
-            : <div />}
+      <div className="card">
+        <h3 data-testid="name-card">{ cardName }</h3>
+        <div className="img-container">
+          <img src={ cardImage } alt={ cardName } data-testid="image-card" />
+        </div>
+        <p data-testid="description-card"><em>{ cardDescription }</em></p>
+        <div className="attr-container">
+          <div data-testid="attr1-card" className="attr1-card">
+            <div className="attr1">{ cardAttr1 }</div>
+            &nbsp;Defesa
+          </div>
+          <div data-testid="attr2-card" className="attr2-card">
+            <div className="attr2">{ cardAttr2 }</div>
+            &nbsp;Meio-Campo
+          </div>
+          <div data-testid="attr3-card" className="attr3-card">
+            <div className="attr3">{ cardAttr3 }</div>
+            &nbsp;Ataque
+          </div>
+        </div>
+        <div className="card-footer">
+          <div data-testid="rare-card" className="rare-card">{ cardRare }</div>
+          <div className="trunfo-card">
+            { cardTrunfo
+              ? <div data-testid="trunfo-card">&nbsp; | &nbsp; Super Trunfo </div>
+              : <div />}
+          </div>
         </div>
       </div>
 

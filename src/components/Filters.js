@@ -5,7 +5,7 @@ class Filters extends React.Component {
   render() {
     const { onInputChange, trunfoFilter } = this.props;
     return (
-      <>
+      <div className="deck-filters-container">
         <label htmlFor="search-name-filter">
           Fitlro de Busca
           <input
@@ -40,7 +40,7 @@ class Filters extends React.Component {
             onChange={ onInputChange }
           />
         </label>
-      </>
+      </div>
     );
   }
 }

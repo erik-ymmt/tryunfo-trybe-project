@@ -119,16 +119,9 @@ class App extends React.Component {
         hasTrunfo: false,
       });
     }
-    deck.forEach((card) => {
-      if (card.cardTrunfo === true) {
-        this.setState({
-          hasTrunfo: true,
-        });
-      } else {
-        this.setState({
-          hasTrunfo: false,
-        });
-      }
+    const trunfoExists = deck.some((card) => card.cardTrunfo === true);
+    this.setState({
+      hasTrunfo: trunfoExists,
     });
     this.enableSaveBtn();
   }
@@ -195,8 +188,8 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <section className="new-card-container">
-          <h2>Criar Carta</h2>
           <div className="new-card-inputs">
+            <h2>Criar Carta</h2>
             <Form
               cardName={ cardName }
               cardDescription={ cardDescription }
@@ -212,8 +205,8 @@ class App extends React.Component {
               onSaveButtonClick={ this.saveCard }
             />
           </div>
-          <h2>Preview Carta</h2>
           <div className="new-card-preview">
+            <h2>Preview Carta</h2>
             <Card
               cardName={ cardName }
               cardDescription={ cardDescription }
@@ -233,7 +226,9 @@ class App extends React.Component {
             trunfoFilter={ trunfoFilter }
             disableFilters={ trunfoFilter }
           />
-          {this.renderDeck()}
+          <div className="deck-card-container">
+            {this.renderDeck()}
+          </div>
         </section>
       </div>
     );
