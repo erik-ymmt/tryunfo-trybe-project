@@ -24,6 +24,7 @@ class App extends React.Component {
       deck: [],
       nameFilter: '',
       rareFilter: '',
+      trunfoFilter: false,
     };
   }
 
@@ -99,6 +100,7 @@ class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: '',
+      cardTrunfo: false,
     }, this.verifyTrunfoExistence);
   }
 
@@ -140,39 +142,53 @@ class App extends React.Component {
     return card.cardRare === rareFilter;
   }
 
-  renderDeck() {
-    const { deck, nameFilter, rareFilter } = this.state;
+  filterByTrunfo() {
+    const { deck } = this.state;
     return deck
+      .filter((card) => card.cardTrunfo === true)
+      .map((card, index) => this.renderCard(card, index));
+  }
+
+  renderCard(card, index) {
+    return (
+      <div className="deck-card" key={ card.cardName }>
+        <Card
+          cardName={ card.cardName }
+          cardDescription={ card.cardDescription }
+          cardAttr1={ card.cardAttr1 }
+          cardAttr2={ card.cardAttr2 }
+          cardAttr3={ card.cardAttr3 }
+          cardImage={ card.cardImage }
+          cardRare={ card.cardRare }
+          cardTrunfo={ card.cardTrunfo }
+        />
+        <button
+          type="button"
+          data-testid="delete-button"
+          onClick={ () => this.removeCard(index) }
+        >
+          Remover
+        </button>
+      </div>
+    );
+  }
+
+  renderDeck() {
+    const { deck, nameFilter, rareFilter, trunfoFilter } = this.state;
+    const filteredDeck = deck
       .filter((card) => this.filterByRarity(rareFilter, card))
-      .filter((card) => card.cardName.includes(nameFilter))
-      .map((card, index) => (
-        <div className="deck-card" key={ card.cardName }>
-          <Card
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            cardTrunfo={ card.cardTrunfo }
-          />
-          <button
-            type="button"
-            data-testid="delete-button"
-            onClick={ () => this.removeCard(index) }
-          >
-            Remover
-          </button>
-        </div>
-      ));
+      .filter((card) => card.cardName.includes(nameFilter));
+    if (trunfoFilter) {
+      return this.filterByTrunfo();
+    }
+    return filteredDeck
+      .map((card, index) => this.renderCard(card, index));
   }
 
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, hasTrunfo, cardTrunfo,
-      isSaveButtonDisabled,
+      cardImage, cardRare, hasTrunfo, cardTrunfo, trunfoFilter, isSaveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -225,8 +241,6 @@ class App extends React.Component {
             <select
               name="rareFilter"
               data-testid="rare-filter"
-              // id="rarity"
-              // value={ cardRare }
               onChange={ this.handleInput }
             >
               <option value="todas"> todas </option>
@@ -234,6 +248,16 @@ class App extends React.Component {
               <option value="raro"> raro </option>
               <option value="muito raro"> muito raro </option>
             </select>
+          </label>
+          <label htmlFor="super-trunfo">
+            Super Trunfo
+            <input
+              name="trunfoFilter"
+              type="checkbox"
+              data-testid="trunfo-filter"
+              checked={ trunfoFilter }
+              onChange={ this.handleInput }
+            />
           </label>
           {this.renderDeck()}
         </section>
