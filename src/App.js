@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import Filters from './components/Filters';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -227,38 +228,11 @@ class App extends React.Component {
         </section>
         <section className="deck-container">
           <h2>Deck</h2>
-          <label htmlFor="search-name-filter">
-            Fitlro de Busca
-            <input
-              name="nameFilter"
-              type="text"
-              data-testid="name-filter"
-              onChange={ this.handleInput }
-              placeholder="Nome da carta"
-            />
-          </label>
-          <label htmlFor="rarity">
-            <select
-              name="rareFilter"
-              data-testid="rare-filter"
-              onChange={ this.handleInput }
-            >
-              <option value="todas"> todas </option>
-              <option value="normal"> normal </option>
-              <option value="raro"> raro </option>
-              <option value="muito raro"> muito raro </option>
-            </select>
-          </label>
-          <label htmlFor="super-trunfo">
-            Super Trunfo
-            <input
-              name="trunfoFilter"
-              type="checkbox"
-              data-testid="trunfo-filter"
-              checked={ trunfoFilter }
-              onChange={ this.handleInput }
-            />
-          </label>
+          <Filters
+            onInputChange={ this.handleInput }
+            trunfoFilter={ trunfoFilter }
+            disableFilters={ trunfoFilter }
+          />
           {this.renderDeck()}
         </section>
       </div>
