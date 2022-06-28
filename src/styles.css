@@ -228,7 +228,7 @@ input, textarea, select {
   background-position: center;
   display: flex;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 25px;
 }
 
 .new-card-inputs, .new-card-preview {
