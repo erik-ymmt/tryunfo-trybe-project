@@ -2,6 +2,8 @@ import React from 'react';
 import Card from './components/Card';
 import Filters from './components/Filters';
 import Form from './components/Form';
+import preLoadedDeck from './helpers/preLoadedDeck';
+import { arsenalLogo } from './helpers/team-logos-url';
 
 class App extends React.Component {
   constructor() {
@@ -12,17 +14,17 @@ class App extends React.Component {
     this.renderDeck = this.renderDeck.bind(this);
 
     this.state = {
-      cardName: '',
-      cardDescription: '',
+      cardName: 'Arsenal',
+      cardDescription: '13 vezes campeão inglês',
       cardAttr1: '',
       cardAttr2: '',
       cardAttr3: '',
-      cardImage: '',
-      cardRare: '',
+      cardImage: arsenalLogo,
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      deck: [],
+      deck: preLoadedDeck,
       nameFilter: '',
       rareFilter: '',
       trunfoFilter: false,
@@ -171,7 +173,7 @@ class App extends React.Component {
     const { deck, nameFilter, rareFilter, trunfoFilter } = this.state;
     const filteredDeck = deck
       .filter((card) => this.filterByRarity(rareFilter, card))
-      .filter((card) => card.cardName.includes(nameFilter));
+      .filter((card) => (card.cardName.toLowerCase()).includes(nameFilter.toLowerCase()));
     if (trunfoFilter) {
       return this.filterByTrunfo();
     }

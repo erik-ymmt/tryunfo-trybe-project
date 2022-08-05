@@ -27,6 +27,8 @@ class Form extends React.Component {
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
+            className="card-decription"
+            maxLength="34"
           />
         </label>
         <label htmlFor="attr1">
@@ -59,11 +61,11 @@ class Form extends React.Component {
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
-            placeholder="0 ~ 90"
+            placeholder="0 ~ 90 (soma máx.das skills = 210)"
           />
         </label>
         <label htmlFor="img">
-          Imagem
+          Imagem (URL)
           <input
             name="cardImage"
             type="text"

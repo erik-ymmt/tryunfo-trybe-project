@@ -18,9 +18,16 @@ class Card extends React.Component {
       <div className="card">
         <h3 data-testid="name-card">{ cardName }</h3>
         <div className="img-container">
-          <img src={ cardImage } alt={ cardName } data-testid="image-card" />
+          <img
+            src={ cardImage }
+            alt={ cardName }
+            data-testid="image-card"
+            className="card-image"
+          />
         </div>
-        <p data-testid="description-card"><em>{ cardDescription }</em></p>
+        <p data-testid="description-card">
+          <em>{ cardDescription }</em>
+        </p>
         <div className="attr-container">
           <div data-testid="attr1-card" className="attr1-card">
             <div className="attr1">{ cardAttr1 }</div>
@@ -33,6 +40,14 @@ class Card extends React.Component {
           <div data-testid="attr3-card" className="attr3-card">
             <div className="attr3">{ cardAttr3 }</div>
             &nbsp;Ataque
+          </div>
+          <div data-testid="attr3-card" className="attr3-card">
+            <div className="attr4">
+              {
+                String(Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))
+              }
+            </div>
+            &nbsp;Total
           </div>
         </div>
         <div className="card-footer">

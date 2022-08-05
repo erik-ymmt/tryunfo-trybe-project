@@ -1,4 +1,4 @@
-/* Referência: Arquivo cedido por Thiago Braddock */
+/* Referência: Arquivo base por Thiago Braddock */
 
 /* reset */
 * {
@@ -285,6 +285,10 @@ label {
   width: 80%;
 }
 
+.card-image {
+  width: 80%;
+}
+
 .card img {
   margin: 15px 0;
 }
@@ -297,6 +301,10 @@ label {
   font-size: 1.2rem;
 }
 
+.card-decription {
+  font-family: var(--bodyFont);
+}
+
 .attr1-card, .attr2-card, .attr3-card {
   align-items: center;
   display: flex;
@@ -304,7 +312,7 @@ label {
   margin: 2px;
 }
 
-.attr1, .attr2, .attr3 {
+.attr1, .attr2, .attr3, .attr4 {
   align-items: center;
   border-radius: 100%;
   display: flex;
@@ -326,6 +334,10 @@ label {
 
 .attr3 {
   background-color: var(--red-dark);
+}
+
+.attr4 {
+  background-color: rgba(59, 138, 59, 0.5);
 }
 
 .card-footer {
