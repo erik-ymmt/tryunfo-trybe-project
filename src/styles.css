@@ -358,8 +358,6 @@ label {
   margin-top: 0;
   padding: 2%;
   padding-top: 0;
-
-  /* background-image: url('https://img.freepik.com/free-photo/green-grass-field-pattern-background-soccer-football_64749-1953.jpg?w=1060'); */
 }
 
 .deck-filters-container {
@@ -382,4 +380,33 @@ label {
 .deck-card-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+@media screen and ( max-width : 800px ) {
+
+  .new-card-container {
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+  }
+
+  .new-card-inputs, .new-card-preview {
+    width: 95%;
+  }
+
+  .card {
+    margin-bottom: 10px;
+    width: 85%;
+  }
+
+  .deck-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .deck-card {
+    margin-bottom: 70px;
+  }
 }
